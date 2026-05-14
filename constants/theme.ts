@@ -32,11 +32,12 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
-    width: 80,
-    height: 80,
+    width: 70,
+    height: 70,
     borderRadius: 100,
     justifyContent: "center",
-    marginHorizontal: 10,
+    marginHorizontal: 5,
+    marginVertical: 5,
     backgroundColor: colors.darkGray,
   },
   buttonText: {
@@ -46,7 +47,8 @@ export const styles = StyleSheet.create({
   },
   buttonRow: {
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: "space-between",
     marginBottom: 18,
+    flexWrap: "wrap",
   },
 });
