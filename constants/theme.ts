@@ -1,53 +1,52 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+import { StyleSheet } from "react-native";
 
-import { Platform } from 'react-native';
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
-export const Colors = {
-  light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
-  },
-  dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
-  },
+export const colors = {
+  darkGray: "#2D2D2D",
+  lightGray: "#9B9B9B",
+  orange: "#FF9427",
+  textPrimary: "#FFFFFF",
+  textSecondary: "#666666",
+  background: "#000000",
 };
-
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
+export const styles = StyleSheet.create({
+  background: {
+    flex: 1,
+    backgroundColor: colors.background,
   },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
+  mainResult: {
+    color: colors.textPrimary,
+    fontSize: 70,
+    textAlign: "right",
+    marginBottom: 10,
+    fontWeight: "400",
   },
-  web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
-    mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+  subResult: {
+    color: colors.textSecondary,
+    fontSize: 40,
+    textAlign: "right",
+    fontWeight: "300",
+  },
+  calculatorContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    padding: 20,
+  },
+  button: {
+    width: 80,
+    height: 80,
+    borderRadius: 100,
+    justifyContent: "center",
+    marginHorizontal: 10,
+    backgroundColor: colors.darkGray,
+  },
+  buttonText: {
+    color: colors.textPrimary,
+    fontSize: 30,
+    textAlign: "center",
+  },
+  buttonRow: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginBottom: 18,
   },
 });
