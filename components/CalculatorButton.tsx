@@ -5,12 +5,12 @@ import { Pressable, Text } from "react-native";
 type CalculatorButtonProps = {
   label: string;
   color?: string;
-  flex?: number;
+  onPress?: () => void;
 };
 export default function CalculatorButton({
   label,
   color = colors.darkGray,
-  flex = 1,
+  onPress,
 }: CalculatorButtonProps) {
   return (
     <Pressable
@@ -18,8 +18,9 @@ export default function CalculatorButton({
         ...styles.button,
         opacity: pressed ? 0.8 : 1,
         backgroundColor: color || (pressed ? "#ccc" : "#fff"),
-        flex: flex,
+        flex: label === "0" ? 2 : 1,
       })}
+      onPress={onPress}
     >
       <Text style={styles.buttonText}>{label}</Text>
     </Pressable>

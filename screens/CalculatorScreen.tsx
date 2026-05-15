@@ -1,9 +1,12 @@
 import CalculatorButton from "@/components/CalculatorButton";
 import { colors, styles } from "@/constants/theme";
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 
 export default function CalculatorScreen() {
+  const [result, setResult] = useState("0");
+  const [subResult, setSubResult] = useState("0");
+
   const buttons = [
     { label: "C", color: colors.lightGray },
     { label: "+/-", color: colors.lightGray },
@@ -21,16 +24,49 @@ export default function CalculatorScreen() {
     { label: "2" },
     { label: "3" },
     { label: "+", color: colors.orange },
-    { label: "0", flex: 2 },
+    { label: "0" },
     { label: "." },
     { label: "=", color: colors.orange },
   ];
 
+  const handleButtonPress = (label: string) => {
+    if (label === "C") {
+      setResult("0");
+      setSubResult("0");
+      return;
+    } else if (label === "=") {
+      handleCalculate(subResult);
+      return;
+    }
+
+    setSubResult((prev) => {
+      const lastDigit = prev[prev.length - 1];
+
+      const operators = ["+", "-", "*", "/", "."];
+
+      if (prev === "0" && !operators.includes(label)) {
+        return label;
+      }
+
+      if (operators.includes(lastDigit) && operators.includes(label)) {
+        return prev;
+      }
+
+      return prev + label;
+    });
+  };
+
+  const handleCalculate = (subresult: string) => {
+    const result = eval(subresult);
+    console.log(result);
+    setResult(String(result));
+  };
+
   return (
     <View style={styles.calculatorContainer}>
       <View style={{ marginBottom: 20, paddingHorizontal: 30 }}>
-        <Text style={styles.mainResult}>1500</Text>
-        <Text style={styles.subResult}>15</Text>
+        <Text style={styles.mainResult}>{result}</Text>
+        <Text style={styles.subResult}>{subResult}</Text>
       </View>
       <View style={styles.buttonRow}>
         {buttons.map((button, index) => (
@@ -38,7 +74,7 @@ export default function CalculatorScreen() {
             key={index}
             label={button.label}
             color={button.color}
-            flex={button.flex}
+            onPress={() => handleButtonPress(button.label)}
           />
         ))}
       </View>
